@@ -12,7 +12,7 @@ class TodoItem with _$TodoItem {
     @TodoIdConverter() required TodoId id,
     @TitleConverter() required Title title,
     @DetailConverter() required Detail detail,
-    required bool isDone,
+    @Default(false) bool isDone,
   }) = _TodoItem;
 
   factory TodoItem.fromJson(Map<String, dynamic> json) =>

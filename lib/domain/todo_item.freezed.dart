@@ -25,7 +25,7 @@ class _$TodoItemTearOff {
       {@TodoIdConverter() required TodoId id,
       @TitleConverter() required Title title,
       @DetailConverter() required Detail detail,
-      required bool isDone}) {
+      bool isDone = false}) {
     return _TodoItem(
       id: id,
       title: title,
@@ -193,7 +193,7 @@ class _$_TodoItem implements _TodoItem {
       {@TodoIdConverter() required this.id,
       @TitleConverter() required this.title,
       @DetailConverter() required this.detail,
-      required this.isDone});
+      this.isDone = false});
 
   factory _$_TodoItem.fromJson(Map<String, dynamic> json) =>
       _$$_TodoItemFromJson(json);
@@ -207,6 +207,7 @@ class _$_TodoItem implements _TodoItem {
   @override
   @DetailConverter()
   final Detail detail;
+  @JsonKey(defaultValue: false)
   @override
   final bool isDone;
 
@@ -245,7 +246,7 @@ abstract class _TodoItem implements TodoItem {
       {@TodoIdConverter() required TodoId id,
       @TitleConverter() required Title title,
       @DetailConverter() required Detail detail,
-      required bool isDone}) = _$_TodoItem;
+      bool isDone}) = _$_TodoItem;
 
   factory _TodoItem.fromJson(Map<String, dynamic> json) = _$_TodoItem.fromJson;
 
