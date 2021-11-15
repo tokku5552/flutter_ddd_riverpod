@@ -13,14 +13,18 @@ T _$identity<T>(T value) => value;
 final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
+TodoItem _$TodoItemFromJson(Map<String, dynamic> json) {
+  return _TodoItem.fromJson(json);
+}
+
 /// @nodoc
 class _$TodoItemTearOff {
   const _$TodoItemTearOff();
 
   _TodoItem call(
-      {required TodoId id,
-      required Title title,
-      required Detail detail,
+      {@TodoIdConverter() required TodoId id,
+      @TitleConverter() required Title title,
+      @DetailConverter() required Detail detail,
       required bool isDone}) {
     return _TodoItem(
       id: id,
@@ -29,6 +33,10 @@ class _$TodoItemTearOff {
       isDone: isDone,
     );
   }
+
+  TodoItem fromJson(Map<String, Object?> json) {
+    return TodoItem.fromJson(json);
+  }
 }
 
 /// @nodoc
@@ -36,11 +44,15 @@ const $TodoItem = _$TodoItemTearOff();
 
 /// @nodoc
 mixin _$TodoItem {
+  @TodoIdConverter()
   TodoId get id => throw _privateConstructorUsedError;
+  @TitleConverter()
   Title get title => throw _privateConstructorUsedError;
+  @DetailConverter()
   Detail get detail => throw _privateConstructorUsedError;
   bool get isDone => throw _privateConstructorUsedError;
 
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
   $TodoItemCopyWith<TodoItem> get copyWith =>
       throw _privateConstructorUsedError;
@@ -50,7 +62,11 @@ mixin _$TodoItem {
 abstract class $TodoItemCopyWith<$Res> {
   factory $TodoItemCopyWith(TodoItem value, $Res Function(TodoItem) then) =
       _$TodoItemCopyWithImpl<$Res>;
-  $Res call({TodoId id, Title title, Detail detail, bool isDone});
+  $Res call(
+      {@TodoIdConverter() TodoId id,
+      @TitleConverter() Title title,
+      @DetailConverter() Detail detail,
+      bool isDone});
 
   $TodoIdCopyWith<$Res> get id;
   $TitleCopyWith<$Res> get title;
@@ -119,7 +135,11 @@ abstract class _$TodoItemCopyWith<$Res> implements $TodoItemCopyWith<$Res> {
   factory _$TodoItemCopyWith(_TodoItem value, $Res Function(_TodoItem) then) =
       __$TodoItemCopyWithImpl<$Res>;
   @override
-  $Res call({TodoId id, Title title, Detail detail, bool isDone});
+  $Res call(
+      {@TodoIdConverter() TodoId id,
+      @TitleConverter() Title title,
+      @DetailConverter() Detail detail,
+      bool isDone});
 
   @override
   $TodoIdCopyWith<$Res> get id;
@@ -167,19 +187,25 @@ class __$TodoItemCopyWithImpl<$Res> extends _$TodoItemCopyWithImpl<$Res>
 }
 
 /// @nodoc
-
+@JsonSerializable()
 class _$_TodoItem implements _TodoItem {
   const _$_TodoItem(
-      {required this.id,
-      required this.title,
-      required this.detail,
+      {@TodoIdConverter() required this.id,
+      @TitleConverter() required this.title,
+      @DetailConverter() required this.detail,
       required this.isDone});
 
+  factory _$_TodoItem.fromJson(Map<String, dynamic> json) =>
+      _$$_TodoItemFromJson(json);
+
   @override
+  @TodoIdConverter()
   final TodoId id;
   @override
+  @TitleConverter()
   final Title title;
   @override
+  @DetailConverter()
   final Detail detail;
   @override
   final bool isDone;
@@ -207,20 +233,30 @@ class _$_TodoItem implements _TodoItem {
   @override
   _$TodoItemCopyWith<_TodoItem> get copyWith =>
       __$TodoItemCopyWithImpl<_TodoItem>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$_TodoItemToJson(this);
+  }
 }
 
 abstract class _TodoItem implements TodoItem {
   const factory _TodoItem(
-      {required TodoId id,
-      required Title title,
-      required Detail detail,
+      {@TodoIdConverter() required TodoId id,
+      @TitleConverter() required Title title,
+      @DetailConverter() required Detail detail,
       required bool isDone}) = _$_TodoItem;
 
+  factory _TodoItem.fromJson(Map<String, dynamic> json) = _$_TodoItem.fromJson;
+
   @override
+  @TodoIdConverter()
   TodoId get id;
   @override
+  @TitleConverter()
   Title get title;
   @override
+  @DetailConverter()
   Detail get detail;
   @override
   bool get isDone;

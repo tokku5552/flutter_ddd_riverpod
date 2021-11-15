@@ -17,9 +17,9 @@ final _privateConstructorUsedError = UnsupportedError(
 class _$TodoIdTearOff {
   const _$TodoIdTearOff();
 
-  _TodoId call({required int id}) {
+  _TodoId call([String? value]) {
     return _TodoId(
-      id: id,
+      value,
     );
   }
 }
@@ -29,7 +29,7 @@ const $TodoId = _$TodoIdTearOff();
 
 /// @nodoc
 mixin _$TodoId {
-  int get id => throw _privateConstructorUsedError;
+  String? get value => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $TodoIdCopyWith<TodoId> get copyWith => throw _privateConstructorUsedError;
@@ -39,7 +39,7 @@ mixin _$TodoId {
 abstract class $TodoIdCopyWith<$Res> {
   factory $TodoIdCopyWith(TodoId value, $Res Function(TodoId) then) =
       _$TodoIdCopyWithImpl<$Res>;
-  $Res call({int id});
+  $Res call({String? value});
 }
 
 /// @nodoc
@@ -52,13 +52,13 @@ class _$TodoIdCopyWithImpl<$Res> implements $TodoIdCopyWith<$Res> {
 
   @override
   $Res call({
-    Object? id = freezed,
+    Object? value = freezed,
   }) {
     return _then(_value.copyWith(
-      id: id == freezed
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as int,
+      value: value == freezed
+          ? _value.value
+          : value // ignore: cast_nullable_to_non_nullable
+              as String?,
     ));
   }
 }
@@ -68,7 +68,7 @@ abstract class _$TodoIdCopyWith<$Res> implements $TodoIdCopyWith<$Res> {
   factory _$TodoIdCopyWith(_TodoId value, $Res Function(_TodoId) then) =
       __$TodoIdCopyWithImpl<$Res>;
   @override
-  $Res call({int id});
+  $Res call({String? value});
 }
 
 /// @nodoc
@@ -82,13 +82,13 @@ class __$TodoIdCopyWithImpl<$Res> extends _$TodoIdCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object? id = freezed,
+    Object? value = freezed,
   }) {
     return _then(_TodoId(
-      id: id == freezed
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as int,
+      value == freezed
+          ? _value.value
+          : value // ignore: cast_nullable_to_non_nullable
+              as String?,
     ));
   }
 }
@@ -96,14 +96,14 @@ class __$TodoIdCopyWithImpl<$Res> extends _$TodoIdCopyWithImpl<$Res>
 /// @nodoc
 
 class _$_TodoId implements _TodoId {
-  const _$_TodoId({required this.id});
+  const _$_TodoId([this.value]);
 
   @override
-  final int id;
+  final String? value;
 
   @override
   String toString() {
-    return 'TodoId(id: $id)';
+    return 'TodoId(value: $value)';
   }
 
   @override
@@ -111,11 +111,11 @@ class _$_TodoId implements _TodoId {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _TodoId &&
-            (identical(other.id, id) || other.id == id));
+            (identical(other.value, value) || other.value == value));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, id);
+  int get hashCode => Object.hash(runtimeType, value);
 
   @JsonKey(ignore: true)
   @override
@@ -124,10 +124,10 @@ class _$_TodoId implements _TodoId {
 }
 
 abstract class _TodoId implements TodoId {
-  const factory _TodoId({required int id}) = _$_TodoId;
+  const factory _TodoId([String? value]) = _$_TodoId;
 
   @override
-  int get id;
+  String? get value;
   @override
   @JsonKey(ignore: true)
   _$TodoIdCopyWith<_TodoId> get copyWith => throw _privateConstructorUsedError;

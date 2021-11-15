@@ -17,9 +17,9 @@ final _privateConstructorUsedError = UnsupportedError(
 class _$DetailTearOff {
   const _$DetailTearOff();
 
-  _Detail call({required String value}) {
+  _Detail call(String value) {
     return _Detail(
-      value: value,
+      value,
     );
   }
 }
@@ -85,7 +85,7 @@ class __$DetailCopyWithImpl<$Res> extends _$DetailCopyWithImpl<$Res>
     Object? value = freezed,
   }) {
     return _then(_Detail(
-      value: value == freezed
+      value == freezed
           ? _value.value
           : value // ignore: cast_nullable_to_non_nullable
               as String,
@@ -96,7 +96,7 @@ class __$DetailCopyWithImpl<$Res> extends _$DetailCopyWithImpl<$Res>
 /// @nodoc
 
 class _$_Detail implements _Detail {
-  const _$_Detail({required this.value}) : assert(value.length < 120);
+  const _$_Detail(this.value) : assert(value.length < 120);
 
   @override
   final String value;
@@ -124,7 +124,7 @@ class _$_Detail implements _Detail {
 }
 
 abstract class _Detail implements Detail {
-  const factory _Detail({required String value}) = _$_Detail;
+  const factory _Detail(String value) = _$_Detail;
 
   @override
   String get value;

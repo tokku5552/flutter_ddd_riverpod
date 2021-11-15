@@ -17,9 +17,9 @@ final _privateConstructorUsedError = UnsupportedError(
 class _$TitleTearOff {
   const _$TitleTearOff();
 
-  _Title call({required String value}) {
+  _Title call(String value) {
     return _Title(
-      value: value,
+      value,
     );
   }
 }
@@ -85,7 +85,7 @@ class __$TitleCopyWithImpl<$Res> extends _$TitleCopyWithImpl<$Res>
     Object? value = freezed,
   }) {
     return _then(_Title(
-      value: value == freezed
+      value == freezed
           ? _value.value
           : value // ignore: cast_nullable_to_non_nullable
               as String,
@@ -96,7 +96,7 @@ class __$TitleCopyWithImpl<$Res> extends _$TitleCopyWithImpl<$Res>
 /// @nodoc
 
 class _$_Title implements _Title {
-  const _$_Title({required this.value}) : assert(value.length < 20);
+  const _$_Title(this.value) : assert(value.length < 20);
 
   @override
   final String value;
@@ -124,7 +124,7 @@ class _$_Title implements _Title {
 }
 
 abstract class _Title implements Title {
-  const factory _Title({required String value}) = _$_Title;
+  const factory _Title(String value) = _$_Title;
 
   @override
   String get value;
