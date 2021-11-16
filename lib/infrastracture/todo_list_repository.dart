@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter_ddd_riverpod/domain/todo_item.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 final todoListRepository = Provider((ref) => TodoListRepository());
@@ -18,19 +19,19 @@ class TodoListRepository {
   }
 
   void subscribeStream(
-    void Function(List<Map<String, dynamic>>) onCompleted, {
+    void Function(List<TodoItem>) onCompleted, {
     required void Function() onEmpty,
   }) {
     _stream = _db.collection('todo-list').snapshots();
     _streamListener = _stream?.listen((snapshot) {
       if (snapshot.size != 0) {
         onCompleted(snapshot.docs.map((item) {
-          return {
+          return TodoItem.fromJson({
             'id': item.id,
             'title': item['title'],
             'detail': item['detail'],
             'isDone': item['isDone'],
-          };
+          });
         }).toList());
       } else {
         onEmpty();

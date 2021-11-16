@@ -19,16 +19,21 @@ class TodoListNotifier extends StateNotifier<TodoListState> {
 
   void init() {
     state = state.copyWith(isFetching: true);
-    _todoAppService.subscribeTodoList(_onDocumentFetched, onEmpty: _dispose);
+    _todoAppService.subscribeTodoList(_onFetched, onEmpty: _dispose);
   }
 
   void _dispose() {
     state = state.copyWith(isFetching: false, todoList: []);
   }
 
-  void _onDocumentFetched(List<Map<String, dynamic>> data) {
+  void _onFetched(List<TodoItem> todoList) {
     state = state.copyWith(
         isFetching: false,
-        todoList: data.map((e) => TodoItem.fromJson(e)).toList());
+        todoList: todoList
+            .map(
+              (item) =>
+                  TodoItem(id: item.id, title: item.title, detail: item.detail),
+            )
+            .toList());
   }
 }

@@ -17,7 +17,7 @@ class TodoAppService {
   final TodoListRepository _todoListRepository;
 
   void subscribeTodoList(
-    void Function(List<Map<String, dynamic>>) onCompleted, {
+    void Function(List<TodoItem>) onCompleted, {
     required void Function() onEmpty,
   }) {
     _todoListRepository.subscribeStream(
