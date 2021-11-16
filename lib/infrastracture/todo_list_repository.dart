@@ -2,6 +2,9 @@ import 'dart:async';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter_ddd_riverpod/domain/todo_item.dart';
+import 'package:flutter_ddd_riverpod/domain/value/detail.dart';
+import 'package:flutter_ddd_riverpod/domain/value/title.dart';
+import 'package:flutter_ddd_riverpod/domain/value/todo_id.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 final todoListRepository = Provider((ref) => TodoListRepository());
@@ -39,13 +42,20 @@ class TodoListRepository {
     });
   }
 
-  Map<String, dynamic> findById({required String id}) {
+  TodoItem findById({required String id}) {
     // TODO: implement
-    return {
-      'id': id,
-      'title': 'title',
-      'detail': 'detail',
-      'isDone': 'isDone',
-    };
+    return const TodoItem(
+      id: TodoId('id'),
+      title: Title('title'),
+      detail: Detail('detail'),
+    );
+  }
+
+  void update({required TodoItem item}) {
+    // TODO: implement
+  }
+
+  void delete({required TodoItem item}) {
+    // TODO: implement
   }
 }

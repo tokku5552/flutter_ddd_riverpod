@@ -27,7 +27,14 @@ class TodoAppService {
   }
 
   void updateIsDone({required String id}) {
-    // TODO: implement
+    final item = _todoListRepository.findById(id: id);
+    final updatedItem = item.copyWith(
+      id: item.id,
+      title: item.title,
+      detail: item.detail,
+      isDone: !item.isDone,
+    );
+    _todoListRepository.update(item: updatedItem);
   }
 
   void updateTodoItem({required TodoItem item}) {
@@ -35,7 +42,8 @@ class TodoAppService {
   }
 
   void deleteTodoItem({required String id}) {
-    // TODO: implement
+    final item = _todoListRepository.findById(id: id);
+    _todoListRepository.delete(item: item);
   }
 
   void createTodoItem({required String title, required String detail}) {
