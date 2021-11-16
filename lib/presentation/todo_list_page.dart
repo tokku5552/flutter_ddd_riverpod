@@ -1,31 +1,48 @@
-
 import 'package:flutter/material.dart';
+import 'package:flutter_ddd_riverpod/presentation/todo_detail_page.dart';
+import 'package:flutter_ddd_riverpod/presentation/todo_list_notifier.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-class TodoListPage extends StatelessWidget{
+class TodoListPage extends HookConsumerWidget {
   const TodoListPage({Key? key}) : super(key: key);
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final state = ref.watch(todoListProvider);
+
     return Scaffold(
       appBar: AppBar(
-        title: const Text('test'),
+        title: const Text('Todo List Page'),
       ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: const <Widget>[
-            Text(
-              'You have pushed the button this many times:',
-            ),
-          ],
-        ),
+      body: ListView(
+        children: state.todoList
+            .map((item) => ListTile(
+                  leading: Checkbox(
+                    value: item.isDone,
+                    onChanged: (bool? value) {},
+                  ),
+                  title: RichText(
+                    text: TextSpan(
+                      text: item.title.value,
+                      style: const TextStyle(
+                        color: Colors.black87,
+                      ),
+                    ),
+                  ),
+                ))
+            .toList(),
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: () {},
-        tooltip: 'Increment',
+        onPressed: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => const TodoDetailPage(),
+            ),
+          );
+        },
         child: const Icon(Icons.add),
       ),
     );
   }
-
 }

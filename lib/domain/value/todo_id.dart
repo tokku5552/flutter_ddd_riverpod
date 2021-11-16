@@ -13,7 +13,7 @@ class TodoIdConverter implements JsonConverter<TodoId, String> {
   const TodoIdConverter();
 
   @override
-  TodoId fromJson(String value) {
+  TodoId fromJson(String? value) {
     return TodoId(value);
   }
 

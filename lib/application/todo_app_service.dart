@@ -2,13 +2,48 @@ import 'package:flutter_ddd_riverpod/domain/todo_item.dart';
 import 'package:flutter_ddd_riverpod/domain/value/detail.dart';
 import 'package:flutter_ddd_riverpod/domain/value/title.dart';
 import 'package:flutter_ddd_riverpod/domain/value/todo_id.dart';
+import 'package:flutter_ddd_riverpod/infrastracture/todo_list_repository.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
+
+final todoAppService = Provider(
+  (ref) => TodoAppService(
+    todoListRepository: ref.read(todoListRepository),
+  ),
+);
 
 class TodoAppService {
-  createTodoItem({required String title, required String detail}) {
+  TodoAppService({required TodoListRepository todoListRepository})
+      : _todoListRepository = todoListRepository;
+  final TodoListRepository _todoListRepository;
+
+  void subscribeTodoList(
+    void Function(List<Map<String, dynamic>>) onCompleted, {
+    required void Function() onEmpty,
+  }) {
+    _todoListRepository.subscribeStream(
+      onCompleted,
+      onEmpty: onEmpty,
+    );
+  }
+
+  void updateIsDone({required String id}) {
+    // TODO: implement
+  }
+
+  void updateTodoItem({required TodoItem item}) {
+    // TODO: implement
+  }
+
+  void deleteTodoItem({required String id}) {
+    // TODO: implement
+  }
+
+  void createTodoItem({required String title, required String detail}) {
     final todoItem = TodoItem(
       id: const TodoId(null),
       title: Title(title),
       detail: Detail(detail),
     ).toJson();
+    // TODO: implement
   }
 }
