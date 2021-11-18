@@ -47,11 +47,11 @@ class TodoAppService {
   }
 
   void createTodoItem({required String title, required String detail}) {
-    final todoItem = TodoItem(
-      id: const TodoId(null),
-      title: Title(title),
-      detail: Detail(detail),
-    ).toJson();
+    // final todoItem = TodoItem(
+    //   id: const TodoId(null),
+    //   title: Title(title),
+    //   detail: Detail(detail),
+    // ).toJson();
     // TODO: implement
   }
 }

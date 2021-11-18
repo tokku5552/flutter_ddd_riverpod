@@ -31,8 +31,12 @@ class TodoListNotifier extends StateNotifier<TodoListState> {
         isFetching: false,
         todoList: todoList
             .map(
-              (item) =>
-                  TodoItem(id: item.id, title: item.title, detail: item.detail),
+              (item) => TodoItem(
+                id: item.id,
+                title: item.title,
+                detail: item.detail,
+                createdAt: item.createdAt,
+              ),
             )
             .toList());
   }

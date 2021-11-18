@@ -44,10 +44,11 @@ class TodoListRepository {
 
   TodoItem findById({required String id}) {
     // TODO: implement
-    return const TodoItem(
-      id: TodoId('id'),
-      title: Title('title'),
-      detail: Detail('detail'),
+    return TodoItem(
+      id: const TodoId('id'),
+      title: const Title('title'),
+      detail: const Detail('detail'),
+      createdAt: DateTime.now(),
     );
   }
 

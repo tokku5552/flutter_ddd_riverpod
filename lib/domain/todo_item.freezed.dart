@@ -25,12 +25,14 @@ class _$TodoItemTearOff {
       {@TodoIdConverter() required TodoId id,
       @TitleConverter() required Title title,
       @DetailConverter() required Detail detail,
-      bool isDone = false}) {
+      bool isDone = false,
+      @DateTimeConverter() required DateTime createdAt}) {
     return _TodoItem(
       id: id,
       title: title,
       detail: detail,
       isDone: isDone,
+      createdAt: createdAt,
     );
   }
 
@@ -51,6 +53,8 @@ mixin _$TodoItem {
   @DetailConverter()
   Detail get detail => throw _privateConstructorUsedError;
   bool get isDone => throw _privateConstructorUsedError;
+  @DateTimeConverter()
+  DateTime get createdAt => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -66,7 +70,8 @@ abstract class $TodoItemCopyWith<$Res> {
       {@TodoIdConverter() TodoId id,
       @TitleConverter() Title title,
       @DetailConverter() Detail detail,
-      bool isDone});
+      bool isDone,
+      @DateTimeConverter() DateTime createdAt});
 
   $TodoIdCopyWith<$Res> get id;
   $TitleCopyWith<$Res> get title;
@@ -87,6 +92,7 @@ class _$TodoItemCopyWithImpl<$Res> implements $TodoItemCopyWith<$Res> {
     Object? title = freezed,
     Object? detail = freezed,
     Object? isDone = freezed,
+    Object? createdAt = freezed,
   }) {
     return _then(_value.copyWith(
       id: id == freezed
@@ -105,6 +111,10 @@ class _$TodoItemCopyWithImpl<$Res> implements $TodoItemCopyWith<$Res> {
           ? _value.isDone
           : isDone // ignore: cast_nullable_to_non_nullable
               as bool,
+      createdAt: createdAt == freezed
+          ? _value.createdAt
+          : createdAt // ignore: cast_nullable_to_non_nullable
+              as DateTime,
     ));
   }
 
@@ -139,7 +149,8 @@ abstract class _$TodoItemCopyWith<$Res> implements $TodoItemCopyWith<$Res> {
       {@TodoIdConverter() TodoId id,
       @TitleConverter() Title title,
       @DetailConverter() Detail detail,
-      bool isDone});
+      bool isDone,
+      @DateTimeConverter() DateTime createdAt});
 
   @override
   $TodoIdCopyWith<$Res> get id;
@@ -164,6 +175,7 @@ class __$TodoItemCopyWithImpl<$Res> extends _$TodoItemCopyWithImpl<$Res>
     Object? title = freezed,
     Object? detail = freezed,
     Object? isDone = freezed,
+    Object? createdAt = freezed,
   }) {
     return _then(_TodoItem(
       id: id == freezed
@@ -182,6 +194,10 @@ class __$TodoItemCopyWithImpl<$Res> extends _$TodoItemCopyWithImpl<$Res>
           ? _value.isDone
           : isDone // ignore: cast_nullable_to_non_nullable
               as bool,
+      createdAt: createdAt == freezed
+          ? _value.createdAt
+          : createdAt // ignore: cast_nullable_to_non_nullable
+              as DateTime,
     ));
   }
 }
@@ -193,7 +209,8 @@ class _$_TodoItem implements _TodoItem {
       {@TodoIdConverter() required this.id,
       @TitleConverter() required this.title,
       @DetailConverter() required this.detail,
-      this.isDone = false});
+      this.isDone = false,
+      @DateTimeConverter() required this.createdAt});
 
   factory _$_TodoItem.fromJson(Map<String, dynamic> json) =>
       _$$_TodoItemFromJson(json);
@@ -210,10 +227,13 @@ class _$_TodoItem implements _TodoItem {
   @JsonKey(defaultValue: false)
   @override
   final bool isDone;
+  @override
+  @DateTimeConverter()
+  final DateTime createdAt;
 
   @override
   String toString() {
-    return 'TodoItem(id: $id, title: $title, detail: $detail, isDone: $isDone)';
+    return 'TodoItem(id: $id, title: $title, detail: $detail, isDone: $isDone, createdAt: $createdAt)';
   }
 
   @override
@@ -224,11 +244,14 @@ class _$_TodoItem implements _TodoItem {
             (identical(other.id, id) || other.id == id) &&
             (identical(other.title, title) || other.title == title) &&
             (identical(other.detail, detail) || other.detail == detail) &&
-            (identical(other.isDone, isDone) || other.isDone == isDone));
+            (identical(other.isDone, isDone) || other.isDone == isDone) &&
+            (identical(other.createdAt, createdAt) ||
+                other.createdAt == createdAt));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, id, title, detail, isDone);
+  int get hashCode =>
+      Object.hash(runtimeType, id, title, detail, isDone, createdAt);
 
   @JsonKey(ignore: true)
   @override
@@ -246,7 +269,8 @@ abstract class _TodoItem implements TodoItem {
       {@TodoIdConverter() required TodoId id,
       @TitleConverter() required Title title,
       @DetailConverter() required Detail detail,
-      bool isDone}) = _$_TodoItem;
+      bool isDone,
+      @DateTimeConverter() required DateTime createdAt}) = _$_TodoItem;
 
   factory _TodoItem.fromJson(Map<String, dynamic> json) = _$_TodoItem.fromJson;
 
@@ -261,6 +285,9 @@ abstract class _TodoItem implements TodoItem {
   Detail get detail;
   @override
   bool get isDone;
+  @override
+  @DateTimeConverter()
+  DateTime get createdAt;
   @override
   @JsonKey(ignore: true)
   _$TodoItemCopyWith<_TodoItem> get copyWith =>
