@@ -205,7 +205,7 @@ class __$TodoItemCopyWithImpl<$Res> extends _$TodoItemCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$_TodoItem implements _TodoItem {
-  const _$_TodoItem(
+  _$_TodoItem(
       {@TodoIdConverter() required this.id,
       @TitleConverter() required this.title,
       @DetailConverter() required this.detail,
@@ -265,7 +265,7 @@ class _$_TodoItem implements _TodoItem {
 }
 
 abstract class _TodoItem implements TodoItem {
-  const factory _TodoItem(
+  factory _TodoItem(
       {@TodoIdConverter() required TodoId id,
       @TitleConverter() required Title title,
       @DetailConverter() required Detail detail,
