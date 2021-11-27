@@ -34,6 +34,7 @@ class TodoListRepository {
             'title': item['title'],
             'detail': item['detail'],
             'isDone': item['isDone'],
+            'createdAt': item['createdAt'],
           });
         }).toList());
       } else {
