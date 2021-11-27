@@ -12,7 +12,7 @@ _$_TodoItem _$$_TodoItemFromJson(Map<String, dynamic> json) => _$_TodoItem(
       detail: const DetailConverter().fromJson(json['detail'] as String),
       isDone: json['isDone'] as bool? ?? false,
       createdAt:
-          const DateTimeConverter().fromJson(json['createdAt'] as Timestamp),
+          const DateTimeConverter().fromJson(json['createdAt'] as String),
     );
 
 Map<String, dynamic> _$$_TodoItemToJson(_$_TodoItem instance) =>

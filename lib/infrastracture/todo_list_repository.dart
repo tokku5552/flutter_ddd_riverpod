@@ -29,12 +29,13 @@ class TodoListRepository {
     _streamListener = _stream?.listen((snapshot) {
       if (snapshot.size != 0) {
         onCompleted(snapshot.docs.map((item) {
+          final createdAt = (item['createdAt'] as Timestamp).toDate();
           return TodoItem.fromJson({
             'id': item.id,
             'title': item['title'],
             'detail': item['detail'],
             'isDone': item['isDone'],
-            'createdAt': item['createdAt'],
+            'createdAt': createdAt.toString(),
           });
         }).toList());
       } else {

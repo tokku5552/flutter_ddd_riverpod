@@ -3,7 +3,6 @@ import 'package:flutter_ddd_riverpod/domain/value/detail.dart';
 import 'package:flutter_ddd_riverpod/domain/value/title.dart';
 import 'package:flutter_ddd_riverpod/domain/value/todo_id.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
 
 part 'todo_item.freezed.dart';
 part 'todo_item.g.dart';
