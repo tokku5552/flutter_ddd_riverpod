@@ -13,7 +13,7 @@ class TodoDetailPage extends HookConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Todo List Page'),
+        title: Text(_todoItem != null ? '編集画面' : '新規作成'),
       ),
       body: Container(),
     );

@@ -9,7 +9,7 @@ class TodoListPage extends HookConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final state = ref.watch(todoListProvider);
-
+    final notifier = ref.read(todoListProvider.notifier);
     return Scaffold(
       appBar: AppBar(
         title: const Text('Todo List Page'),
@@ -33,12 +33,7 @@ class TodoListPage extends HookConsumerWidget {
                   ),
                 ),
                 onTap: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (BuildContext context) => const TodoDetailPage(),
-                    ),
-                  );
+                  notifier.onTapItem(context, item);
                 },
               ),
             )

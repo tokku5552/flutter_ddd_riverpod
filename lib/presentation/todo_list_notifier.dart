@@ -1,6 +1,8 @@
+import 'package:flutter/material.dart';
 import 'package:flutter_ddd_riverpod/application/state/todo_list_state.dart';
 import 'package:flutter_ddd_riverpod/application/todo_app_service.dart';
 import 'package:flutter_ddd_riverpod/domain/todo_item.dart';
+import 'package:flutter_ddd_riverpod/presentation/todo_detail_page.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:state_notifier/state_notifier.dart';
 
@@ -39,5 +41,16 @@ class TodoListNotifier extends StateNotifier<TodoListState> {
               ),
             )
             .toList());
+  }
+
+  void onTapItem(BuildContext context, TodoItem item) {
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (BuildContext context) => TodoDetailPage(
+          todoItem: item,
+        ),
+      ),
+    );
   }
 }
