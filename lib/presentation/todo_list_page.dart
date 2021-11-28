@@ -33,7 +33,7 @@ class TodoListPage extends HookConsumerWidget {
                   ),
                 ),
                 onTap: () {
-                  notifier.onTapItem(context, item);
+                  notifier.onTapItem(context, ref, item);
                 },
               ),
             )
