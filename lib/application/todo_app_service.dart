@@ -26,8 +26,13 @@ class TodoAppService {
     );
   }
 
-  void updateIsDone({required String id}) {
-    final item = _todoListRepository.findById(id: id);
+  Future<TodoItem> findByTodoId({required TodoId todoId}) async {
+    return await _todoListRepository.findById(id: todoId.value ?? 'nothing');
+  }
+
+  Future<void> updateIsDone({required TodoId todoId}) async {
+    final item =
+        await _todoListRepository.findById(id: todoId.value ?? 'nothing');
     final updatedItem = item.copyWith(
       id: item.id,
       title: item.title,
@@ -41,8 +46,8 @@ class TodoAppService {
     // TODO: implement
   }
 
-  void deleteTodoItem({required String id}) {
-    final item = _todoListRepository.findById(id: id);
+  Future<void> deleteTodoItem({required String id}) async {
+    final item = await _todoListRepository.findById(id: id);
     _todoListRepository.delete(item: item);
   }
 

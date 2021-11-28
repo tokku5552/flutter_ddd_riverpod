@@ -2,9 +2,6 @@ import 'dart:async';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter_ddd_riverpod/domain/todo_item.dart';
-import 'package:flutter_ddd_riverpod/domain/value/detail.dart';
-import 'package:flutter_ddd_riverpod/domain/value/title.dart';
-import 'package:flutter_ddd_riverpod/domain/value/todo_id.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 final todoListRepository = Provider((ref) => TodoListRepository());
@@ -29,14 +26,7 @@ class TodoListRepository {
     _streamListener = _stream?.listen((snapshot) {
       if (snapshot.size != 0) {
         onCompleted(snapshot.docs.map((item) {
-          final createdAt = (item['createdAt'] as Timestamp).toDate();
-          return TodoItem.fromJson({
-            'id': item.id,
-            'title': item['title'],
-            'detail': item['detail'],
-            'isDone': item['isDone'],
-            'createdAt': createdAt.toString(),
-          });
+          return TodoItem.fromJson(_jsonFromSnapshot(item));
         }).toList());
       } else {
         onEmpty();
@@ -44,14 +34,10 @@ class TodoListRepository {
     });
   }
 
-  TodoItem findById({required String id}) {
-    // TODO: implement
-    return TodoItem(
-      id: const TodoId('id'),
-      title: const Title('title'),
-      detail: const Detail('detail'),
-      createdAt: DateTime.now(),
-    );
+  Future<TodoItem> findById({required String id}) async {
+    final collectionRef = _db.collection('todo-list');
+    final doc = await collectionRef.doc(id).get();
+    return TodoItem.fromJson(_jsonFromSnapshot(doc));
   }
 
   void update({required TodoItem item}) {
@@ -60,5 +46,16 @@ class TodoListRepository {
 
   void delete({required TodoItem item}) {
     // TODO: implement
+  }
+
+  Map<String, dynamic> _jsonFromSnapshot<T extends DocumentSnapshot>(T json) {
+    final createdAt = (json['createdAt'] as Timestamp).toDate();
+    return {
+      'id': json.id,
+      'title': json['title'],
+      'detail': json['detail'],
+      'isDone': json['isDone'],
+      'createdAt': createdAt.toString(),
+    };
   }
 }
