@@ -16,7 +16,9 @@ class TodoListPage extends HookConsumerWidget {
       ),
       body: ListView(
         children: state.todoList
-            .map((item) => ListTile(
+            .map(
+              (item) => InkWell(
+                child: ListTile(
                   leading: Checkbox(
                     value: item.isDone,
                     onChanged: (bool? value) {},
@@ -29,7 +31,17 @@ class TodoListPage extends HookConsumerWidget {
                       ),
                     ),
                   ),
-                ))
+                ),
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (BuildContext context) => const TodoDetailPage(),
+                    ),
+                  );
+                },
+              ),
+            )
             .toList(),
       ),
       floatingActionButton: FloatingActionButton(
