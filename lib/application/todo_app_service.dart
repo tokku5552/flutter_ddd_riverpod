@@ -51,13 +51,14 @@ class TodoAppService {
     _todoListRepository.delete(item: item);
   }
 
-  void createTodoItem({required String title, required String detail}) {
+  Future<void> createTodoItem(
+      {required String title, required String detail}) async {
     final todoItem = TodoItem(
       id: const TodoId(null),
       title: Title(title),
       detail: Detail(detail),
       createdAt: DateTime.now(),
-    ).toJson();
-    // TODO: implement
+    );
+    await _todoListRepository.create(item: todoItem);
   }
 }
