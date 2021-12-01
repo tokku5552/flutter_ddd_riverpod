@@ -40,17 +40,44 @@ class TodoListRepository {
     return TodoItem.fromJson(_jsonFromSnapshot(doc));
   }
 
+  Future<void> create({required TodoItem item}) async {
+    final collectionRef = _db.collection('todo-list');
+    await collectionRef.doc().set(_convertDateTimeToTimestamp(item.toJson()));
+  }
+
   Future<void> update({required TodoItem item}) async {
     final collectionRef = _db.collection('todo-list');
-    await collectionRef.doc(item.id.value).update(item.toJson());
+    print(item.toJson());
+    await collectionRef
+        .doc(item.id.value)
+        .update(_convertDateTimeToTimestamp(item.toJson()));
   }
 
   void delete({required TodoItem item}) {
     // TODO: implement
   }
 
+  Map<String, dynamic> toTimeStampJson(Timestamp timestamp) {
+    return {'date': timestamp.toDate().toIso8601String()};
+  }
+
+  void dateTimeToTimestamp(DateTime dateTime) {
+    Timestamp.fromDate(dateTime).toString();
+  }
+
+  Map<String, dynamic> _convertDateTimeToTimestamp(Map<String, dynamic> json) {
+    final createdAt = DateTime.parse(json['createdAt']);
+    return {
+      'id': json['id'],
+      'title': json['title'],
+      'detail': json['detail'],
+      'isDone': json['isDone'],
+      'createdAt': Timestamp.fromDate(createdAt),
+    };
+  }
+
   Map<String, dynamic> _jsonFromSnapshot<T extends DocumentSnapshot>(T json) {
-    final createdAt = (json['createdAt'] as Timestamp).toDate();
+    final createdAt = (json['createdAt'] as Timestamp).toDate().toLocal();
     return {
       'id': json.id,
       'title': json['title'],
