@@ -42,8 +42,8 @@ class TodoAppService {
     _todoListRepository.update(item: updatedItem);
   }
 
-  void updateTodoItem({required TodoItem item}) {
-    // TODO: implement
+  Future<void> updateTodoItem({required TodoItem item}) async {
+    await _todoListRepository.update(item: item);
   }
 
   Future<void> deleteTodoItem({required String id}) async {

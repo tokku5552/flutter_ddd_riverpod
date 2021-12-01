@@ -57,4 +57,8 @@ class TodoDetailNotifier extends StateNotifier<TodoItem?> {
       isDone: state!.isDone,
     );
   }
+
+  Future<void> updateTodoItem() async {
+    await _todoAppService.updateTodoItem(item: state!);
+  }
 }

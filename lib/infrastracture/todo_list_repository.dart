@@ -40,8 +40,9 @@ class TodoListRepository {
     return TodoItem.fromJson(_jsonFromSnapshot(doc));
   }
 
-  void update({required TodoItem item}) {
-    // TODO: implement
+  Future<void> update({required TodoItem item}) async {
+    final collectionRef = _db.collection('todo-list');
+    await collectionRef.doc(item.id.value).update(item.toJson());
   }
 
   void delete({required TodoItem item}) {
