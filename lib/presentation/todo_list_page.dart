@@ -9,14 +9,16 @@ class TodoListPage extends HookConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final state = ref.watch(todoListProvider);
-
+    final notifier = ref.read(todoListProvider.notifier);
     return Scaffold(
       appBar: AppBar(
         title: const Text('Todo List Page'),
       ),
       body: ListView(
         children: state.todoList
-            .map((item) => ListTile(
+            .map(
+              (item) => InkWell(
+                child: ListTile(
                   leading: Checkbox(
                     value: item.isDone,
                     onChanged: (bool? value) {},
@@ -29,7 +31,12 @@ class TodoListPage extends HookConsumerWidget {
                       ),
                     ),
                   ),
-                ))
+                ),
+                onTap: () {
+                  notifier.onTapItem(context, ref, item);
+                },
+              ),
+            )
             .toList(),
       ),
       floatingActionButton: FloatingActionButton(
