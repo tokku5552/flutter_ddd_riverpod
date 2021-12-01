@@ -28,6 +28,10 @@ class TodoDetailNotifier extends StateNotifier<TodoItem?> {
     super.dispose();
   }
 
+  void reset() {
+    state = null;
+  }
+
   void setTodoItem(TodoItem item) {
     state = item.copyWith(
       id: item.id,
