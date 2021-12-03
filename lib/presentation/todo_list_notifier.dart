@@ -54,6 +54,10 @@ class TodoListNotifier extends StateNotifier<TodoListState> {
     );
   }
 
+  Future<void> onLongPressItem({required TodoItem item}) async {
+    await _todoAppService.deleteTodoItem(todoId: item.id);
+  }
+
   void onTapFAB(BuildContext context, WidgetRef ref) {
     ref.read(todoItemProvider.notifier).reset();
     Navigator.push(
