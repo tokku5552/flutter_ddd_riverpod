@@ -41,12 +41,7 @@ class TodoListPage extends HookConsumerWidget {
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-          Navigator.push(
-            context,
-            MaterialPageRoute(
-              builder: (context) => const TodoDetailPage(),
-            ),
-          );
+          notifier.onTapFAB(context, ref);
         },
         child: const Icon(Icons.add),
       ),

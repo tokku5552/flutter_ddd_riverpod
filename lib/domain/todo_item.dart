@@ -19,4 +19,11 @@ class TodoItem with _$TodoItem {
 
   factory TodoItem.fromJson(Map<String, dynamic> json) =>
       _$TodoItemFromJson(json);
+
+  factory TodoItem.initial()=>TodoItem(
+    id: const TodoId(null),
+    title: const Title(""),
+    detail: const Detail(""),
+    createdAt: DateTime.now(),
+  );
 }

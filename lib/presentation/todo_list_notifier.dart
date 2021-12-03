@@ -55,7 +55,7 @@ class TodoListNotifier extends StateNotifier<TodoListState> {
   }
 
   void onTapFAB(BuildContext context, WidgetRef ref) {
-    ref.read(todoItemProvider.notifier).dispose();
+    ref.read(todoItemProvider.notifier).reset();
     Navigator.push(
       context,
       MaterialPageRoute(

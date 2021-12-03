@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_ddd_riverpod/presentation/todo_detail_notifier.dart';
+import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 class TodoDetailPage extends HookConsumerWidget {
@@ -9,13 +10,16 @@ class TodoDetailPage extends HookConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final state = ref.watch(todoItemProvider);
     final notifier = ref.read(todoItemProvider.notifier);
-    final titleEditingController = TextEditingController();
-    final detailEditingController = TextEditingController();
-    titleEditingController.text = state != null ? state.title.value : "";
-    detailEditingController.text = state != null ? state.detail.value : "";
+    final titleController = useTextEditingController(
+      text: notifier.isNew() ? "" : state.title.value,
+    );
+    final detailController = useTextEditingController(
+      text: notifier.isNew() ? "" : state.detail.value,
+    );
+
     return Scaffold(
       appBar: AppBar(
-        title: Text(state != null ? '編集画面' : '新規作成'),
+        title: Text(notifier.isNew() ? '新規作成' : '編集画面'),
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
@@ -29,7 +33,7 @@ class TodoDetailPage extends HookConsumerWidget {
               onChanged: (title) {
                 notifier.changeTitle(title);
               },
-              controller: titleEditingController,
+              controller: titleController,
             ),
             const SizedBox(
               height: 16,
@@ -42,16 +46,18 @@ class TodoDetailPage extends HookConsumerWidget {
               onChanged: (detail) {
                 notifier.changeDetail(detail);
               },
-              controller: detailEditingController,
+              controller: detailController,
             ),
             const SizedBox(
               height: 16,
             ),
             ElevatedButton(
-                onPressed: () {
-                  notifier.updateTodoItem();
-                },
-                child: Text('更新'))
+              onPressed: () async {
+                await notifier.onTapElevatedButton();
+                Navigator.pop(context);
+              },
+              child: Text(notifier.isNew() ? '作成' : '更新'),
+            )
           ],
         ),
       ),

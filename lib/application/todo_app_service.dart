@@ -27,12 +27,11 @@ class TodoAppService {
   }
 
   Future<TodoItem> findByTodoId({required TodoId todoId}) async {
-    return await _todoListRepository.findById(id: todoId.value ?? 'nothing');
+    return await _todoListRepository.findById(id: todoId.value ?? '');
   }
 
   Future<void> updateIsDone({required TodoId todoId}) async {
-    final item =
-        await _todoListRepository.findById(id: todoId.value ?? 'nothing');
+    final item = await _todoListRepository.findById(id: todoId.value ?? '');
     final updatedItem = item.copyWith(
       id: item.id,
       title: item.title,
@@ -46,18 +45,19 @@ class TodoAppService {
     await _todoListRepository.update(item: item);
   }
 
-  Future<void> deleteTodoItem({required String id}) async {
-    final item = await _todoListRepository.findById(id: id);
+  Future<void> deleteTodoItem({required TodoId todoId}) async {
+    final item = await _todoListRepository.findById(id: todoId.value ?? '');
     _todoListRepository.delete(item: item);
   }
 
-  void createTodoItem({required String title, required String detail}) {
+  Future<void> createTodoItem(
+      {required Title title, required Detail detail}) async {
     final todoItem = TodoItem(
       id: const TodoId(null),
-      title: Title(title),
-      detail: Detail(detail),
+      title: Title(title.value),
+      detail: Detail(detail.value),
       createdAt: DateTime.now(),
-    ).toJson();
-    // TODO: implement
+    );
+    await _todoListRepository.create(item: todoItem);
   }
 }
