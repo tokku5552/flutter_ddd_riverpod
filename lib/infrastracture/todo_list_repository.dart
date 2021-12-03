@@ -53,8 +53,9 @@ class TodoListRepository {
         .update(_convertDateTimeToTimestamp(item.toJson()));
   }
 
-  void delete({required TodoItem item}) {
-    // TODO: implement
+  Future<void> delete({required TodoItem item}) async {
+    final collectionRef = _db.collection('todo-list');
+    await collectionRef.doc(item.id.value).delete();
   }
 
   Map<String, dynamic> toTimeStampJson(Timestamp timestamp) {

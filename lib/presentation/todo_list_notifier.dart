@@ -4,6 +4,7 @@ import 'package:flutter_ddd_riverpod/application/todo_app_service.dart';
 import 'package:flutter_ddd_riverpod/domain/todo_item.dart';
 import 'package:flutter_ddd_riverpod/presentation/todo_detail_notifier.dart';
 import 'package:flutter_ddd_riverpod/presentation/todo_detail_page.dart';
+import 'package:flutter_ddd_riverpod/presentation/widget/confirm_dialog.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:state_notifier/state_notifier.dart';
 
@@ -52,6 +53,18 @@ class TodoListNotifier extends StateNotifier<TodoListState> {
         builder: (BuildContext context) => const TodoDetailPage(),
       ),
     );
+  }
+
+  Future<void> onLongPressItem({
+    required BuildContext context,
+    required TodoItem item,
+  }) async {
+    final result = await showDialog(
+        context: context,
+        builder: (context) {
+          return const ConfirmDialog(title: '削除してもよろしいですか？');
+        });
+    if (result) await _todoAppService.deleteTodoItem(todoId: item.id);
   }
 
   void onTapFAB(BuildContext context, WidgetRef ref) {
