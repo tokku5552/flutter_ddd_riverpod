@@ -63,7 +63,7 @@ class TodoDetailNotifier extends StateNotifier<TodoItem> {
   Future<void> onTapElevatedButton() async {
     if (isNew()) {
       await _todoAppService.createTodoItem(
-          title: state.title.value, detail: state.detail.value);
+          title: state.title, detail: state.detail);
     } else {
       await _todoAppService.updateTodoItem(item: state);
     }
