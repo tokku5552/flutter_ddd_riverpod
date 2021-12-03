@@ -10,13 +10,12 @@ class TodoDetailPage extends HookConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final state = ref.watch(todoItemProvider);
     final notifier = ref.read(todoItemProvider.notifier);
-    final titleEditingController = TextEditingController();
-    final detailEditingController = TextEditingController();
-
-    useEffect(() {
-      titleEditingController.text = notifier.isNew() ? "" : state.title.value;
-      detailEditingController.text = notifier.isNew() ? "" : state.detail.value;
-    }, const []);
+    final titleController = useTextEditingController(
+      text: notifier.isNew() ? "" : state.title.value,
+    );
+    final detailController = useTextEditingController(
+      text: notifier.isNew() ? "" : state.detail.value,
+    );
 
     return Scaffold(
       appBar: AppBar(
@@ -34,7 +33,7 @@ class TodoDetailPage extends HookConsumerWidget {
               onChanged: (title) {
                 notifier.changeTitle(title);
               },
-              controller: titleEditingController,
+              controller: titleController,
             ),
             const SizedBox(
               height: 16,
@@ -47,7 +46,7 @@ class TodoDetailPage extends HookConsumerWidget {
               onChanged: (detail) {
                 notifier.changeDetail(detail);
               },
-              controller: detailEditingController,
+              controller: detailController,
             ),
             const SizedBox(
               height: 16,
