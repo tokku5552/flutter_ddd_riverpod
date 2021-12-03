@@ -36,7 +36,7 @@ class TodoListPage extends HookConsumerWidget {
                   notifier.onTapItem(context, ref, item);
                 },
                 onLongPress: () async {
-                  await notifier.onLongPressItem(item: item);
+                  await notifier.onLongPressItem(context: context,item: item);
                 },
               ),
             )
