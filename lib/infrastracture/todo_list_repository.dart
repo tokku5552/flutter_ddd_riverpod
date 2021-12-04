@@ -42,7 +42,6 @@ class TodoListRepository {
 
   Future<void> create({required TodoItem item}) async {
     final collectionRef = _db.collection('todo-list');
-    // await collectionRef.doc().set(_convertDateTimeToTimestamp(item.toJson()));
     await collectionRef.add(_convertDateTimeToTimestamp(item.toJson()));
   }
 

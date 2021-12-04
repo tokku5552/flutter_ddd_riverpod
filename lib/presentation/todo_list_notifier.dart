@@ -39,6 +39,7 @@ class TodoListNotifier extends StateNotifier<TodoListState> {
                 id: item.id,
                 title: item.title,
                 detail: item.detail,
+                isDone: item.isDone,
                 createdAt: item.createdAt,
               ),
             )
@@ -65,6 +66,10 @@ class TodoListNotifier extends StateNotifier<TodoListState> {
           return const ConfirmDialog(title: '削除してもよろしいですか？');
         });
     if (result) await _todoAppService.deleteTodoItem(todoId: item.id);
+  }
+
+  Future<void> onTapCheckBox({required TodoItem item}) async {
+    await _todoAppService.updateIsDone(todoId: item.id);
   }
 
   void onTapFAB(BuildContext context, WidgetRef ref) {
