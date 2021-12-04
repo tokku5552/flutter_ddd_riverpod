@@ -38,7 +38,7 @@ class TodoAppService {
       detail: item.detail,
       isDone: !item.isDone,
     );
-    _todoListRepository.update(item: updatedItem);
+    await _todoListRepository.update(item: updatedItem);
   }
 
   Future<void> updateTodoItem({required TodoItem item}) async {

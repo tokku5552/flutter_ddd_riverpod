@@ -21,7 +21,9 @@ class TodoListPage extends HookConsumerWidget {
                 child: ListTile(
                   leading: Checkbox(
                     value: item.isDone,
-                    onChanged: (bool? value) {},
+                    onChanged: (bool? value) async {
+                      await notifier.onTapCheckBox(item: item);
+                    },
                   ),
                   title: RichText(
                     text: TextSpan(
@@ -36,7 +38,7 @@ class TodoListPage extends HookConsumerWidget {
                   notifier.onTapItem(context, ref, item);
                 },
                 onLongPress: () async {
-                  await notifier.onLongPressItem(context: context,item: item);
+                  await notifier.onLongPressItem(context: context, item: item);
                 },
               ),
             )
