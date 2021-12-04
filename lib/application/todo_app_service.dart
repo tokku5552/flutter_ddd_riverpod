@@ -2,7 +2,7 @@ import 'package:flutter_ddd_riverpod/domain/todo_item.dart';
 import 'package:flutter_ddd_riverpod/domain/value/detail.dart';
 import 'package:flutter_ddd_riverpod/domain/value/title.dart';
 import 'package:flutter_ddd_riverpod/domain/value/todo_id.dart';
-import 'package:flutter_ddd_riverpod/infrastracture/todo_list_repository.dart';
+import 'package:flutter_ddd_riverpod/infrastructure/todo_list_repository.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 final todoAppService = Provider(

@@ -57,14 +57,6 @@ class TodoListRepository {
     await collectionRef.doc(item.id.value).delete();
   }
 
-  Map<String, dynamic> toTimeStampJson(Timestamp timestamp) {
-    return {'date': timestamp.toDate().toIso8601String()};
-  }
-
-  void dateTimeToTimestamp(DateTime dateTime) {
-    Timestamp.fromDate(dateTime).toString();
-  }
-
   Map<String, dynamic> _convertDateTimeToTimestamp(Map<String, dynamic> json) {
     final createdAt = DateTime.parse(json['createdAt']);
     return {
