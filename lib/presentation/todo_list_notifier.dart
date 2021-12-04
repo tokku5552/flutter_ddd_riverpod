@@ -39,6 +39,7 @@ class TodoListNotifier extends StateNotifier<TodoListState> {
                 id: item.id,
                 title: item.title,
                 detail: item.detail,
+                isDone: item.isDone,
                 createdAt: item.createdAt,
               ),
             )
