@@ -52,12 +52,7 @@ class TodoAppService {
 
   Future<void> createTodoItem(
       {required Title title, required Detail detail}) async {
-    final todoItem = TodoItem(
-      id: const TodoId(null),
-      title: Title(title.value),
-      detail: Detail(detail.value),
-      createdAt: DateTime.now(),
-    );
+    final todoItem = TodoItem.initial();
     await _todoListRepository.create(item: todoItem);
   }
 }
