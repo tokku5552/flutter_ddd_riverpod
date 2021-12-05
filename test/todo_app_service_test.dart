@@ -1,27 +1,53 @@
 import 'package:flutter_ddd_riverpod/application/todo_app_service.dart';
+import 'package:flutter_ddd_riverpod/domain/todo_item.dart';
+import 'package:flutter_ddd_riverpod/domain/value/todo_id.dart';
 import 'package:flutter_ddd_riverpod/infrastructure/todo_list_repository.dart';
-import 'package:flutter_ddd_riverpod/presentation/todo_list_notifier.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:mockito/mockito.dart';
 
+import 'infrastructure/container.dart';
 import 'infrastructure/todo_list_repository_mem.dart';
+import 'test_data.dart';
 
+void main() {
+  late ProviderContainer _container;
+  late TodoListRepositoryMem _repository;
 
-final todoListRepository=Provider((ref)=>TodoListRepository());
-final todoAppService = Provider(
-      (ref) => TodoAppService(
-    todoListRepository: ref.read(todoListRepository),
-  ),
-);
+  setUp(() {
+    _container = overrideContainer();
+    _repository = _container.read(todoListRepository) as TodoListRepositoryMem;
+    _repository.reset();
+  });
 
-void main(){
-  test('test',() {
-    final container=override();
-    final service = container.read(todoAppService);
+  test('findByTodoId', () async {
+    final item = TodoItem.initial();
+    await _repository.create(item: item);
+    final nextId = _repository.nextId;
 
-when(service.findByTodoId(todoId: todoId)).thenAnswer((realInvocation) => realInvocation.namedArguments);
-    service.findByTodoId(todoId: todoId);
+    final service = _container.read(todoAppService);
+    final result = await service.findByTodoId(todoId: TodoId(nextId));
+    expect(
+      result,
+      item.copyWith(
+        id: TodoId(nextId),
+        title: item.title,
+        detail: item.detail,
+        isDone: item.isDone,
+        createdAt: item.createdAt,
+      ),
+    );
+  });
 
+  test('updateIsDone', () async {
+    _repository.set(dummyTodoList);
+    final service = _container.read(todoAppService);
+    final result1 =
+        await service.findByTodoId(todoId: TodoId(dummyTodoList[0].id.value));
+    expect(result1, dummyTodoList[0]);
+
+    await service.updateIsDone(todoId: dummyTodoList[0].id);
+    final result2 =
+        await service.findByTodoId(todoId: TodoId(dummyTodoList[0].id.value));
+    expect(result2.isDone, !dummyTodoList[0].isDone);
   });
 }
