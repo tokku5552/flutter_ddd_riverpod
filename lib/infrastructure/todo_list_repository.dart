@@ -1,5 +1,4 @@
 import 'dart:async';
-
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter_ddd_riverpod/domain/todo_item.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';

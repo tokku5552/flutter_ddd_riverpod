@@ -8,7 +8,6 @@ import 'package:state_notifier/state_notifier.dart';
 
 final todoItemProvider =
     StateNotifierProvider<TodoDetailNotifier, TodoItem>((ref) {
-  // ref.onDispose(() => ref.notifier.dispose());
   return TodoDetailNotifier(
     todoAppService: ref.read(todoAppService),
   );
@@ -62,8 +61,7 @@ class TodoDetailNotifier extends StateNotifier<TodoItem> {
 
   Future<void> onTapElevatedButton() async {
     if (isNew()) {
-      await _todoAppService.createTodoItem(
-          title: state.title, detail: state.detail);
+      await _todoAppService.createTodoItem();
     } else {
       await _todoAppService.updateTodoItem(item: state);
     }

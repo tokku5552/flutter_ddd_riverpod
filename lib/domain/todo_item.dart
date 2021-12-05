@@ -5,6 +5,7 @@ import 'package:flutter_ddd_riverpod/domain/value/todo_id.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'todo_item.freezed.dart';
+
 part 'todo_item.g.dart';
 
 @freezed
@@ -20,10 +21,19 @@ class TodoItem with _$TodoItem {
   factory TodoItem.fromJson(Map<String, dynamic> json) =>
       _$TodoItemFromJson(json);
 
-  factory TodoItem.initial()=>TodoItem(
-    id: const TodoId(null),
-    title: const Title(""),
-    detail: const Detail(""),
-    createdAt: DateTime.now(),
-  );
+  factory TodoItem.initial() => TodoItem(
+        id: const TodoId(null),
+        title: const Title(""),
+        detail: const Detail(""),
+        createdAt: DateTime.now(),
+      );
+
+  TodoItem updateIsDone() {
+    return copyWith(
+      id: id,
+      title: title,
+      detail: detail,
+      isDone: !isDone,
+    );
+  }
 }

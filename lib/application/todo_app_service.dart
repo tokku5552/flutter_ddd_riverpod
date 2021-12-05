@@ -1,6 +1,4 @@
 import 'package:flutter_ddd_riverpod/domain/todo_item.dart';
-import 'package:flutter_ddd_riverpod/domain/value/detail.dart';
-import 'package:flutter_ddd_riverpod/domain/value/title.dart';
 import 'package:flutter_ddd_riverpod/domain/value/todo_id.dart';
 import 'package:flutter_ddd_riverpod/infrastructure/todo_list_repository.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
@@ -32,13 +30,7 @@ class TodoAppService {
 
   Future<void> updateIsDone({required TodoId todoId}) async {
     final item = await _todoListRepository.findById(id: todoId.value ?? '');
-    final updatedItem = item.copyWith(
-      id: item.id,
-      title: item.title,
-      detail: item.detail,
-      isDone: !item.isDone,
-    );
-    await _todoListRepository.update(item: updatedItem);
+    await _todoListRepository.update(item: item.updateIsDone());
   }
 
   Future<void> updateTodoItem({required TodoItem item}) async {
@@ -50,9 +42,7 @@ class TodoAppService {
     _todoListRepository.delete(item: item);
   }
 
-  Future<void> createTodoItem(
-      {required Title title, required Detail detail}) async {
-    final todoItem = TodoItem.initial();
-    await _todoListRepository.create(item: todoItem);
+  Future<void> createTodoItem() async {
+    await _todoListRepository.create(item: TodoItem.initial());
   }
 }
