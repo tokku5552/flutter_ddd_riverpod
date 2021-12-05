@@ -204,13 +204,14 @@ class __$TodoItemCopyWithImpl<$Res> extends _$TodoItemCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_TodoItem implements _TodoItem {
+class _$_TodoItem extends _TodoItem {
   _$_TodoItem(
       {@TodoIdConverter() required this.id,
       @TitleConverter() required this.title,
       @DetailConverter() required this.detail,
       this.isDone = false,
-      @DateTimeConverter() required this.createdAt});
+      @DateTimeConverter() required this.createdAt})
+      : super._();
 
   factory _$_TodoItem.fromJson(Map<String, dynamic> json) =>
       _$$_TodoItemFromJson(json);
@@ -264,13 +265,14 @@ class _$_TodoItem implements _TodoItem {
   }
 }
 
-abstract class _TodoItem implements TodoItem {
+abstract class _TodoItem extends TodoItem {
   factory _TodoItem(
       {@TodoIdConverter() required TodoId id,
       @TitleConverter() required Title title,
       @DetailConverter() required Detail detail,
       bool isDone,
       @DateTimeConverter() required DateTime createdAt}) = _$_TodoItem;
+  _TodoItem._() : super._();
 
   factory _TodoItem.fromJson(Map<String, dynamic> json) = _$_TodoItem.fromJson;
 

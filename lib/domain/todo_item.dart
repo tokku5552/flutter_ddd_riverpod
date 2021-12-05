@@ -10,6 +10,8 @@ part 'todo_item.g.dart';
 
 @freezed
 class TodoItem with _$TodoItem {
+  const TodoItem._();
+
   factory TodoItem({
     @TodoIdConverter() required TodoId id,
     @TitleConverter() required Title title,
