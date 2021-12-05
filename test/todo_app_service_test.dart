@@ -14,7 +14,7 @@ void main() {
   late TodoListRepositoryMem _repository;
 
   setUp(() {
-    _container = overrideContainer();
+    _container = overrideTodoListRepository();
     _repository = _container.read(todoListRepository) as TodoListRepositoryMem;
     _repository.reset();
   });
