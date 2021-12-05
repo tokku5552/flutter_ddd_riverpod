@@ -1,5 +1,4 @@
 import 'dart:async';
-
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter_ddd_riverpod/domain/todo_item.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
@@ -55,14 +54,6 @@ class TodoListRepository {
   Future<void> delete({required TodoItem item}) async {
     final collectionRef = _db.collection('todo-list');
     await collectionRef.doc(item.id.value).delete();
-  }
-
-  Map<String, dynamic> toTimeStampJson(Timestamp timestamp) {
-    return {'date': timestamp.toDate().toIso8601String()};
-  }
-
-  void dateTimeToTimestamp(DateTime dateTime) {
-    Timestamp.fromDate(dateTime).toString();
   }
 
   Map<String, dynamic> _convertDateTimeToTimestamp(Map<String, dynamic> json) {
