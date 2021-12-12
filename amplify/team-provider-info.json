@@ -1,0 +1,15 @@
+{
+  "dev": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-flutterdddriverpod-dev-02148-authRole",
+      "UnauthRoleArn": "arn:aws:iam::294892136588:role/amplify-flutterdddriverpod-dev-02148-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::294892136588:role/amplify-flutterdddriverpod-dev-02148-authRole",
+      "Region": "ap-northeast-1",
+      "DeploymentBucketName": "amplify-flutterdddriverpod-dev-02148-deployment",
+      "UnauthRoleName": "amplify-flutterdddriverpod-dev-02148-unauthRole",
+      "StackName": "amplify-flutterdddriverpod-dev-02148",
+      "StackId": "arn:aws:cloudformation:ap-northeast-1:294892136588:stack/amplify-flutterdddriverpod-dev-02148/3af6b430-5b5f-11ec-ace6-061edc67a11d",
+      "AmplifyAppId": "d2c7rkow8r850b"
+    }
+  }
+}
