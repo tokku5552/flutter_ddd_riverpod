@@ -3,7 +3,6 @@ import 'package:flutter_ddd_riverpod/infrastructure/todo_list_repository.dart';
 import 'package:flutter_ddd_riverpod/presentation/todo_list_page.dart';
 import 'package:flutter_test/flutter_test.dart';
 
-import 'package:flutter_ddd_riverpod/main.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import 'infrastructure/container.dart';
