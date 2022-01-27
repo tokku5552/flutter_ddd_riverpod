@@ -1,22 +1,17 @@
 # flutter_ddd_riverpod
 
-A new Flutter project.
+Flutterでhooks_riverpod + state_notifier + freezedを使ってDDDをやってみたサンプルプロジェクトです。
 
-## Getting Started
+## 説明記事へのリンク
 
-This project is a starting point for a Flutter application.
+- [【Flutter】hooks_riverpod+state_notifier+freezedでのドメイン駆動設計 - Qiita](https://qiita.com/tokkun5552/items/5dcb79e5283a67c2b2fe)
 
-A few resources to get you started if this is your first Flutter project:
+## このプロジェクトをサンプルとして紹介している資料
 
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
-
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+<iframe src="//www.slideshare.net/slideshow/embed_code/key/5IEfUN8mbfyfQM" width="595" height="485" frameborder="0" marginwidth="0" marginheight="0" scrolling="no" style="border:1px solid #CCC; border-width:1px; margin-bottom:5px; max-width: 100%;" allowfullscreen> </iframe> <div style="margin-bottom:5px"> <strong> <a href="//www.slideshare.net/ShinnosukeTokuda/hooks-riverpod-state-notifier-freezed" title="hooks riverpod + state notifier + freezed でのドメイン駆動設計" target="_blank">hooks riverpod + state notifier + freezed でのドメイン駆動設計</a> </strong> from <strong><a href="//www.slideshare.net/ShinnosukeTokuda" target="_blank">ShinnosukeTokuda</a></strong> </div>
 
 ## Tips
-- use freezed
+- build runner command for freezed
 ```shell:
 flutter pub run build_runner build --delete-conflicting-outputs
 ```

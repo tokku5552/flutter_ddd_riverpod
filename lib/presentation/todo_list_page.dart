@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_ddd_riverpod/presentation/todo_detail_page.dart';
 import 'package:flutter_ddd_riverpod/presentation/todo_list_notifier.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 

@@ -18,6 +18,10 @@ class TodoListRepositoryMem implements TodoListRepository {
     }
   }
 
+  Map<String, TodoItem> get() {
+    return _data;
+  }
+
   @override
   Future<void> disposeStream() async {}
 
