@@ -7,6 +7,7 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import 'infrastructure/container.dart';
 import 'infrastructure/todo_list_repository_mem.dart';
+import 'test_data.dart';
 
 void main() {
   late ProviderContainer _container;
@@ -18,7 +19,8 @@ void main() {
     _repository.reset();
   });
 
-  testWidgets('画面遷移が正しく行われること', (WidgetTester tester) async {
+  testWidgets('The screen transition is done correctly',
+      (WidgetTester tester) async {
     await tester.pumpWidget(
       ProviderScope(
         overrides: [
@@ -35,11 +37,9 @@ void main() {
     );
 
     expect(find.text('Todo List Page'), findsOneWidget);
-    // // Tap the '+' icon and trigger a frame.
     await tester.tap(find.byIcon(Icons.add));
     await tester.pump();
-    // // Verify that our counter has incremented.
+
     expect(find.text('新規作成'), findsNothing);
-    // expect(find.text('1'), findsOneWidget);
   });
 }
