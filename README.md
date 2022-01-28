@@ -11,7 +11,7 @@ Flutterでhooks_riverpod + state_notifier + freezedを使ってDDDをやって�
 ## 説明記事へのリンク
 - [Riverpodでテストを書こう - Slide Share](https://www.slideshare.net/ShinnosukeTokuda/riverpod)
 - [【Flutter】hooks_riverpod+state_notifier+freezedでのドメイン駆動設計 - Qiita](https://qiita.com/tokkun5552/items/5dcb79e5283a67c2b2fe)
-- [hooks riverpod + state notifier + freezed でのドメイン駆動設計](https://www.slideshare.net/ShinnosukeTokuda/hooks-riverpod-state-notifier-freezed)
+- [hooks riverpod + state notifier + freezed でのドメイン駆動設計 - Slide Share](https://www.slideshare.net/ShinnosukeTokuda/hooks-riverpod-state-notifier-freezed)
 
 ## Tips
 - build runner command for freezed
